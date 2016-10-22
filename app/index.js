@@ -5,14 +5,10 @@ var jsonParser = require('./custom-functions/jsonParser');
 var mongoose = require('mongoose');
 var dbPath = require('./db-config');
 var Event = require('./models/event.js');
-var botConfig = require('./config/botConfig');
+var bot = require('./config/botConfig');
 var fbConfig = require('./config/fbConfig');
-var Slackbok = require('slackbots');
 
-var bot = new Slackbok({
-  token: botConfig.token,
-  name: botConfig.name
-});
+
 
 bot.on('start', function() {
     // more information about additional params https://api.slack.com/methods/chat.postMessage
@@ -21,7 +17,7 @@ bot.on('start', function() {
     };
 
     // define channel, where bot exist. You can adjust it there https://my.slack.com/services
-    bot.postMessageToChannel('bot-testing', 'New event comming up', params);
+    bot.postMessageToChannel('bot-testing', 'New event comming up yo', params);
 
 
 });
