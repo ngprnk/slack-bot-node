@@ -1,4 +1,4 @@
-keywords=["ruby","javscript","design","rails","ruby on rails","python","php","blogging","blog","jekyll","sinatra", "everest","cycle","trek","trekking","cycling","everest"];
+keywords=["ruby","javscript","design","rails","ruby on rails","python","php","blogging","blog","jekyll","sinatra", "everest","cycle","trek","trekking","cycling","everest","react","reactjs"];
 var events=[];
 var jsonParser = function(){
 };

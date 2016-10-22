@@ -5,7 +5,25 @@ var jsonParser = require('./custom-functions/jsonParser');
 var mongoose = require('mongoose');
 var dbPath = require('./db-config');
 var Event = require('./models/event.js');
+var botConfig = require('./config/botConfig');
+var Slackbok = require('slackbots');
 
+var bot = new Slackbok({
+  token: botConfig.token,
+  name: botConfig.name
+});
+
+bot.on('start', function() {
+    // more information about additional params https://api.slack.com/methods/chat.postMessage
+    var params = {
+        icon_emoji: ':cat:'
+    };
+
+    // define channel, where bot exist. You can adjust it there https://my.slack.com/services
+    bot.postMessageToChannel('bot-testing', 'https://www.facebook.com/events/1131952436816496', params);
+
+
+});
 
 //connect to mongodb database
 mongoose.Promise = global.Promise;
@@ -35,22 +53,26 @@ app.get('/hello',function(req,res){
           if(err){
             console.log("not found");
           }
-          event=new Event;
-          event._id=eventId;
-          event.name= name;
-          console.log(event.name+"***");
-          event.save(function(err,data){
-            if(err){
-              console.log(err);
-            }
-            console.log({message: 'event successfully created'});
-              console.log("event created"+ data);
-            });
+          if (!event) {
+            event=new Event();
+            event._id=eventId;
+            event.name= name;
+            console.log(event.name+"***");
+            event.save(function(err,data){
+              if(err){
+                console.log(err);
+              }
+              console.log({message: 'event successfully created'});
+                console.log("event created"+ data);
+              });
+          }
+          console.log(event ,"event already exists");
+
 
         });
 
-      };
-    };
+      }
+    }
 
   });
 });
