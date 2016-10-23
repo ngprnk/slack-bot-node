@@ -8,7 +8,7 @@ var dbPath = require('./db-config');
 var Event = require('./models/event.js');
 var bot = require('./config/botConfig');
 var fbConfig = require('./config/fbConfig');
-
+//mongoose configuration
 mongoose.Promise = global.Promise;
 mongoose.connect(dbPath.dbPath);
 var db=mongoose.connection;
@@ -19,7 +19,7 @@ bot.on('start', function() {
     var params = {
         icon_emoji: ':cat:'
     };
-    bot.postMessageToChannel('bot-testing', 'moved db config upper', params);
+    bot.postMessageToChannel('bot-testing', 'you will be Suscribed to events shortly', params);
 });
 
 app.get('/hello',function(req,res){
